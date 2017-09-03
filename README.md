@@ -15,3 +15,5 @@ The left and right lstm shared commom parameters, which are used to extract feat
 
 The sample output from the test case with the model on the Kaggle Quora data is like
 <img src="smaple_output.png">
+
+The model can be improved by adding the fully connected layers after the lstm siamese structure, change the form of loss function or using lstm with other strctures(deeper, bidirectional or tree-based structure)
