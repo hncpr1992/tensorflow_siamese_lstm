@@ -1,3 +1,5 @@
+#!/home/peiran/anaconda3/bin/python
+
 # embedding matrix 
 import pandas as pd
 import numpy as np
@@ -75,15 +77,11 @@ def text_to_wordlist(text, remove_stopwords=False, stem_words=False):
 
 X_train = pd.read_csv(INPUT_DIR+"X_train.csv")
 X_test = pd.read_csv(INPUT_DIR+"X_test.csv")
-Y_train = pd.read_csv(INPUT_DIR+"Y_train.csv")
-Y_test = pd.read_csv(INPUT_DIR+"Y_test.csv")
 
 X_train_q1 = X_train["question1"]
 X_train_q2 = X_train["question2"]
 X_test_q1 = X_test["question1"]
 X_test_q2 = X_test["question2"]
-Y_train_pad = Y_train.as_matrix()
-Y_test_pad = Y_test.as_matrix()
 
 X_train_q1 = X_train_q1.apply(text_to_wordlist)
 X_train_q2 = X_train_q2.apply(text_to_wordlist)
@@ -111,10 +109,10 @@ test_q1 = tokenizer.texts_to_sequences(X_test_q1.tolist())
 test_q2 = tokenizer.texts_to_sequences(X_test_q2.tolist())
 
 # padding sequence
-train_pad_q1 = pad_sequences(train_q1)
-train_pad_q2 = pad_sequences(train_q2)
-test_pad_q1 = pad_sequences(test_q1)
-test_pad_q1 = pad_sequences(test_q2)
+train_pad_q1 = pad_sequences(train_q1, maxlen=30)
+train_pad_q2 = pad_sequences(train_q2, maxlen=30)
+test_pad_q1 = pad_sequences(test_q1, maxlen=30)
+test_pad_q2 = pad_sequences(test_q2, maxlen=30)
 
 # embedding matrix
 embedding_mat = np.zeros([len(tokenizer.word_index)+1, EMB_DIM])
@@ -127,6 +125,4 @@ np.save(INPUT_DIR+"embedding.npy",embedding_mat)
 np.save(INPUT_DIR+"train_pad_q1.npy",train_pad_q1)
 np.save(INPUT_DIR+"train_pad_q2.npy",train_pad_q2)
 np.save(INPUT_DIR+"test_pad_q1.npy",test_pad_q1)
-np.save(INPUT_DIR+"test_pad_q1.npy",test_pad_q1)
-np.save(INPUT_DIR+"Y_train_pad.npy",Y_train_pad)
-np.save(INPUT_DIR+"Y_test_pad.npy",Y_test_pad)
+np.save(INPUT_DIR+"test_pad_q2.npy",test_pad_q2)
