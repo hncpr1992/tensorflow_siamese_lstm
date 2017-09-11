@@ -13,6 +13,12 @@ The structure of Siamese_LSTM is like
 
 The left and right lstm shared commom parameters, which are used to extract features from the sequence of embedded text sentences.
 
+To run the code just get into the directory and type
+
+```python
+python train_test_sampling.py
+```
+
 The sample output from the test case with the model on the Kaggle Quora data is like
 <img src="smaple_output.png">
 
