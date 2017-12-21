@@ -223,14 +223,14 @@ if __name__ == "__main__":
 
     INPUT_DIR = "./input/"
 
-    test_pad_q1 = np.load(INPUT_DIR+"test_pad_q1.npy")
-    test_pad_q2 = np.load(INPUT_DIR+"test_pad_q2.npy")
-    Y_test_pad = np.load(INPUT_DIR+"Y_test.npy")
-    Y_test_pad = Y_test_pad.reshape(-1,1)
+    train_pad_q1 = np.load(INPUT_DIR+"train_pad_q1.npy")
+    train_pad_q2 = np.load(INPUT_DIR+"train_pad_q2.npy")
+    Y_train_pad = np.load(INPUT_DIR+"Y_train.npy")
+    Y_train_pad = Y_train_pad.reshape(-1,1)
     pretrained_embeddings = np.load(INPUT_DIR+"embedding.npy")
 
     model = siamese_lstm(Config, pretrained_embeddings)
-    model.fit(test_pad_q1,test_pad_q2,Y_test_pad)
+    model.fit(train_pad_q1,train_pad_q2,Y_train_pad)
 
 
 
